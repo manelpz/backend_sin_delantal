@@ -1,24 +1,35 @@
 
 
-const {Users} = require('../models');
+const {Users,Addresses_Users} = require('../models');
 const createToken = require('../resolvers/createToken');
 
 
 const signUp = async(req,res) => {
 
-    console.log(req.body)
-    let user = await Users.create(req.body)
-    //.catch((error) => res.status(400).json({error}))
+    try {
+        //req.body.userId = req.user.id
+        
+        //console.log(req.user)
+        
+        //console.log(req.body)
+        //let user = await Users.create(req.body).catch((error) => res.status(400).json({error}))
 
-    // puedes crear una promise pero es mas code
+        const user = await Users.create(req.body)
+        if(!user) return res.status(400).json({message:"Couldn't create any user"})
 
-   // var user =null
-    //Users.create
+        const address = await Addresses_Users.create({...req.body.user,user_id:user.id})
+        if(!address) return res.status(400).json({message:"Couldn't create any user"})
+
+       // const address = await Addresses.create({...req.body.address,houseId:house.id})
+        //if(!address) res.status(400).json({"message":"Error to create address"})
 
 
-    if(!user) return res.status(400).json({message:"Couldn't create any user"})
+        return res.status(201).json(user)
 
-    return res.status(201).json({message:"User created",id:user.id})
+    }catch(e){
+        return res.status(400).json(e)
+    }
+    
 }
 
 const logIn =  async(req,res) => {
@@ -37,25 +48,6 @@ const logIn =  async(req,res) => {
     }).catch((err) => console.log(err))
 
 }
-/*
-const me = async (req,res)=>{
-    const profile = await Users.findOne(
-        {where:{id:req.user.id},
-        attributes:{exclude:["password"]},  //excluye el password
-        include:[
-            {
-                    model:Bookings,
-                    as:"bookings"
-            }
-        ]
-    }
-    
-    )
-
-    if(!profile) res.status(404).json({message:"User not found"})
-
-    res.status(200).json(profile)
-}*/
 
 module.exports = {
     
