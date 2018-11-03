@@ -8,9 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue:DataTypes.UUIDV4
     },
     street: DataTypes.STRING,
-    number: DataTypes.STRING,
+    number: DataTypes.INTEGER,
     zipcode: DataTypes.STRING,
-    district: DataTypes.STRING
+    district: DataTypes.STRING,
+    city: DataTypes.STRING
   }, {});
   Addresses_Restaurants.associate = function(models) {
     // associations can be defined here

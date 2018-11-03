@@ -45,6 +45,18 @@ module.exports = {
         }
       }
     )
+
+    queryInterface.addColumn(
+      "Restaurants",
+      "user_id",{
+        type:Sequelize.UUID,
+        references:{
+          model:'Users',
+          key:"id"
+        }
+      }
+    )
+
     queryInterface.addColumn(
       "Orders",
       "dish_id",{

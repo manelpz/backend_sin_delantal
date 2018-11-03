@@ -8,11 +8,14 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue:Sequelize.UUIDV4
       },
+      name: {
+        type: Sequelize.STRING
+      },
       type_restaurant: {
         type: Sequelize.ENUM,
         values:[1,2,3,4,5,6,7,8,9,10,11]  //1 = "Alitas y Pollo" 2= "China" 3= "Ensaladas" 4= "Hamburguesas" 5="India" 6= "Italiana" 7 ="Mexicana" 8 ="Pescados y Mariscos" 9= "Pizzas" 10= "Sushi y Japonesa" 11= "Otros"
       },
-      time_schedule: {
+      schedule: {
         type: Sequelize.STRING
       },
       restaurant_description: {
@@ -20,6 +23,9 @@ module.exports = {
       },
       rate: {
         type: Sequelize.DECIMAL(5,1)
+      },
+      photos: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       createdAt: {
         allowNull: false,

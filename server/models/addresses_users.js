@@ -8,10 +8,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue:DataTypes.UUIDV4
     },
     street: DataTypes.STRING,
-    number: DataTypes.STRING,
+    number: DataTypes.INTEGER,
     zipcode: DataTypes.STRING,
-    district: DataTypes.STRING
-  }, {});
+    district: DataTypes.STRING,
+    city: DataTypes.STRING
+  }, {}); 
   Addresses_Users.associate = function(models) {
     // associations can be defined here
     Addresses_Users.belongsTo(models.Users,{foreignKey:"user_id",as:"user"});

@@ -12,12 +12,15 @@ module.exports = {
         type: Sequelize.TEXT
       },
       number: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       zipcode: {
         type: Sequelize.STRING
       },
       district: {
+        type: Sequelize.STRING
+      },
+      city: {
         type: Sequelize.STRING
       },
       createdAt: {

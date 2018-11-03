@@ -74,6 +74,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Users.hasOne(models.Addresses_Users,{foreignKey:"user_id",as:"address_user"});
     Users.hasOne(models.Orders,{foreignKey:"user_id",as:"order"});
+    Users.hasMany(models.Restaurants,{foreignKey:"user_id",as:"restaurant"});
   };
   return Users;
 };

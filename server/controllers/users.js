@@ -7,23 +7,14 @@ const createToken = require('../resolvers/createToken');
 const signUp = async(req,res) => {
 
     try {
-        //req.body.userId = req.user.id
         
-        //console.log(req.user)
-        
-        //console.log(req.body)
-        //let user = await Users.create(req.body).catch((error) => res.status(400).json({error}))
-
         const user = await Users.create(req.body)
         if(!user) return res.status(400).json({message:"Couldn't create any user"})
 
         const address = await Addresses_Users.create({...req.body.user,user_id:user.id})
-        if(!address) return res.status(400).json({message:"Couldn't create any user"})
+        if(!address) return res.status(400).json({message:"Couldn't create any user address"})
 
-       // const address = await Addresses.create({...req.body.address,houseId:house.id})
-        //if(!address) res.status(400).json({"message":"Error to create address"})
-
-
+       
         return res.status(201).json(user)
 
     }catch(e){
