@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     dish_description: DataTypes.STRING,
-    price: DataTypes.DECIMAL(5,1)
+    price: DataTypes.DECIMAL(5,1),
+    photos: DataTypes.ARRAY(DataTypes.STRING)
   }, {});
   Dishes.associate = function(models) {
     // associations can be defined here
