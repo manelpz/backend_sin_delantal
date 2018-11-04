@@ -1,5 +1,47 @@
 
-const {Restaurants,Addresses_Restaurants} = require("../models");
+const {Restaurants,Addresses_Restaurants,Dishes,Users} = require("../models");
+
+
+
+const getAllRestaurants =  async(req,res) => {
+    let allRestaurants = await Restaurants.findAll({where:{},include:[
+       {
+           model:Users,
+           as:"user"
+       },
+       {
+           model:Addresses_Restaurants,
+           as:"address_restaurant"          
+       },
+       {
+           model:Dishes,
+           as:"dish"
+       }
+    ]})
+     return res.status(200).json(allRestaurants);
+}
+
+
+const  getOneRestaurant = async(req,res) => {
+    let getRestaurant = await Restaurants.findOne({where:{id:req.params.id},include:[
+        {
+            model:Users,
+            as:"user"
+        },
+        {
+            model:Addresses_Restaurants,
+            as:"address_restaurant"
+        },
+        {
+            model:Dishes,
+            as:"dish"
+        }
+     ]})
+     
+     return res.status(200).json(getRestaurant)
+}
+
+
 
 const createRestaurant = async(req,res) => {
     
@@ -26,6 +68,8 @@ const createRestaurant = async(req,res) => {
 
 
 module.exports = {
-    createRestaurant
+    createRestaurant,
+    getAllRestaurants,
+    getOneRestaurant
 
 }
