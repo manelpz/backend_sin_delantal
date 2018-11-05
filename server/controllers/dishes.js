@@ -1,19 +1,30 @@
 
-const {Dishes} = require("../models");
+const {Dishes,Restaurants} = require("../models");
+
+const  getAllDishes = async(req,res) => {
+    let allDishes = await Dishes.findAll({where:{restaurant_id:req.params.id}})
+
+    return res.status(200).json(allDishes)
+}
+
+const  getOneDish = async(req,res) => {
+    let getDish = await Dishes.findOne({where:{id:req.params.id},include:[
+        {
+            model:Restaurants,
+            as:"restaurant"
+        }
+    ]})
+     
+    return res.status(200).json(getDish)
+}
 
 const createDishes = async(req,res) => {
     
     try{
 
-        //req.body.restaurant_id = req.user.id
-        
         const dish = await Dishes.create(req.body)
         if(!dish) res.status(400).json({message:"Error to create dishes"})
         
-        // const address = await Addresses_Restaurants.create({...req.body.restaurant,restaurant_id:restaurant.id})
-        // if(!address) return res.status(400).json({message:"Couldn't create any restaurant address "})
-        
-        //return res.status(200).json({message:"Dish created successfully","id":dish.id})
         return res.status(201).json(dish)
     
 
@@ -26,5 +37,10 @@ const createDishes = async(req,res) => {
 }
 
 module.exports = {
-    createDishes
+    createDishes,
+    getAllDishes
 }
+
+
+
+

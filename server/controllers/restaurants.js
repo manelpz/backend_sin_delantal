@@ -13,10 +13,10 @@ const getAllRestaurants =  async(req,res) => {
            model:Addresses_Restaurants,
            as:"address_restaurant"          
        },
-       {
+       /*{
            model:Dishes,
            as:"dish"
-       }
+       }*/
     ]})
      return res.status(200).json(allRestaurants);
 }
@@ -31,11 +31,11 @@ const  getOneRestaurant = async(req,res) => {
         {
             model:Addresses_Restaurants,
             as:"address_restaurant"
-        },
+        }/*,
         {
             model:Dishes,
             as:"dish"
-        }
+        }*/
      ]})
      
      return res.status(200).json(getRestaurant)
