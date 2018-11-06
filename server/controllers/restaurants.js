@@ -1,5 +1,5 @@
 
-const {Restaurants,Addresses_Restaurants,Dishes,Users} = require("../models");
+const {Restaurants,Addresses_Restaurants,Dishes,Users,Comments} = require("../models");
 
 
 
@@ -33,8 +33,8 @@ const  getOneRestaurant = async(req,res) => {
             as:"address_restaurant"
         }/*,
         {
-            model:Dishes,
-            as:"dish"
+            model:Comments,
+            as:"comment"
         }*/
      ]})
      

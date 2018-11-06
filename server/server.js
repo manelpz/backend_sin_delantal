@@ -10,7 +10,7 @@ const app = express();
 
 const port = process.env.PORT || 8086;
 
-//const {errors} = require("celebrate");
+const {errors} = require("celebrate");
 
 // éstos son middlewares
 app.use(morgan('dev'));

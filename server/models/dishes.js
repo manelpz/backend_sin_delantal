@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   Dishes.associate = function(models) {
     // associations can be defined here
     Dishes.belongsTo(models.Restaurants,{foreignKey:"restaurant_id",as:"restaurant"});
-    Dishes.hasMany(models.Orders,{foreignKey:"dish_id",as:"order"});
+    //TODO: revisar relaciones
+    //Dishes.hasMany(models.Orders,{foreignKey:"dish_id",as:"order"});
+    Dishes.hasMany(models.OrdersDishes,{foreignKey:"dish_id",as:"dish"});
   };
   return Dishes;
   

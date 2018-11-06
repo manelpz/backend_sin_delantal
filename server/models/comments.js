@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   Comments.associate = function(models) {
     // associations can be defined here
     Comments.belongsTo(models.Orders,{foreignKey:"order_id",as:"order"});
+    //Comments.belongsTo(models.Restaurants,{foreignKey:"restaurant_id",as:"restaurant"});
   };
   return Comments;
 };
