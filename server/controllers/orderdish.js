@@ -17,7 +17,16 @@ const createOrderDish = async(req,res) => {
 
 
 
+const  getOrderDish = async(req,res) => {
+    let getorderdish = await OrdersDishes
+    .findOne({where:{order_id:req.params.id}
+    })
+     
+     return res.status(200).json(getorderdish)
+}
+
 
 module.exports = {
-    createOrderDish
+    createOrderDish,
+    getOrderDish
 } 
