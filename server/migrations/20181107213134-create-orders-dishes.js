@@ -4,9 +4,15 @@ module.exports = {
     return queryInterface.createTable('OrdersDishes', {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID,        
-        defaultValue:Sequelize.UUIDV4
+        type: Sequelize.INTEGER
+      },
+      order_id: {
+        type: Sequelize.STRING
+      },
+      dish_id: {
+        type: Sequelize.STRING
       },
       quantity: {
         type: Sequelize.INTEGER

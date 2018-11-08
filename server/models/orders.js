@@ -18,8 +18,17 @@ module.exports = (sequelize, DataTypes) => {
     Orders.belongsTo(models.Users,{foreignKey:"user_id",as:"user"});
     //TODO:revisar relaciones
     //Orders.belongsTo(models.Dishes,{foreignKey:"dish_id",as:"dish"});
-    Orders.hasMany(models.OrdersDishes,{foreignKey:"order_id",as:"order"});
+    //Orders.hasMany(models.OrdersDishes,{foreignKey:"order_id",as:"order"});
     Orders.hasOne(models.Comments,{foreignKey:"order_id",as:"comment"});
+    
+    Orders.belongsToMany(models.Dishes, {
+      through:"OrderRole",
+      as:"orders",
+      foreignKey: 'order_id',
+      as:"dish"
+    });
+
+
   };
   return Orders;
 };

@@ -12,8 +12,8 @@ const getAllRestaurants =  async(req,res) => {
        {
            model:Addresses_Restaurants,
            as:"address_restaurant"          
-       },
-       /*{
+       }/*,
+       {
            model:Dishes,
            as:"dish"
        }*/
@@ -23,7 +23,8 @@ const getAllRestaurants =  async(req,res) => {
 
 
 const  getOneRestaurant = async(req,res) => {
-    let getRestaurant = await Restaurants.findOne({where:{id:req.params.id},include:[
+    let getRestaurant = await Restaurants
+    .findOne({where:{id:req.params.id},include:[
         {
             model:Users,
             as:"user"
@@ -31,12 +32,12 @@ const  getOneRestaurant = async(req,res) => {
         {
             model:Addresses_Restaurants,
             as:"address_restaurant"
-        }/*,
+        },
         {
-            model:Comments,
-            as:"comment"
-        }*/
-     ]})
+            model:Dishes,
+            as:"dish"
+        }
+    ]})
      
      return res.status(200).json(getRestaurant)
 }
@@ -47,7 +48,7 @@ const createRestaurant = async(req,res) => {
     
     try{
 
-        req.body.restaurant_id = req.user.id
+       // req.body.restaurant_id = req.user.id
         
         const restaurant = await Restaurants.create(req.body)
         if(!restaurant) res.status(400).json({message:"Error to create restaurant"})

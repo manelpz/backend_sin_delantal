@@ -24,10 +24,29 @@ const calculatePrice = async(req,res) => {
     res.status(200).json({price:price,message:"Order price calculated correctly"})
  }
 
- const createOrder = async() => {
+ const createOrder = async(req,res) => {
+    try{
+
+        const order = await Orders.create(req.body).then()
+        if(!order) res.status(400).json({message:"Error to create order"})
+
+        return res.status(200).json({message:"Order created successfully","id":order.id})
+
+    }catch(e){
+        return res.status(400).json({e})
+    }
  }
 
+ const  getOneOrder = async(req,res) => {
+    let getOrder = await Orders.findOne({where:{id:req.params.id}})
+     
+     return res.status(200).json(getOrder)
+}
+
+
+
  module.exports = {
-    calculatePrice,
-    createOrder
+    //calculatePrice,
+    createOrder,
+    getOneOrder
 } 
