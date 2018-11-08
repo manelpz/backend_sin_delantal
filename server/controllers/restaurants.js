@@ -22,6 +22,7 @@ const getAllRestaurants =  async(req,res) => {
 }
 
 
+
 const  getOneRestaurant = async(req,res) => {
     let getRestaurant = await Restaurants
     .findOne({where:{id:req.params.id},include:[
@@ -41,7 +42,6 @@ const  getOneRestaurant = async(req,res) => {
      
      return res.status(200).json(getRestaurant)
 }
-
 
 
 const createRestaurant = async(req,res) => {

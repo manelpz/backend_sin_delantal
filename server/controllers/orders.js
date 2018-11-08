@@ -24,7 +24,7 @@ const calculatePrice = async(req,res) => {
     res.status(200).json({price:price,message:"Order price calculated correctly"})
  }
 
- const createOrder = async(req,res) => {
+const createOrder = async(req,res) => {
     try{
 
         const order = await Orders.create(req.body).then()
@@ -35,13 +35,16 @@ const calculatePrice = async(req,res) => {
     }catch(e){
         return res.status(400).json({e})
     }
- }
+}
 
- const  getOneOrder = async(req,res) => {
+const  getOneOrder = async(req,res) => {
     let getOrder = await Orders.findOne({where:{id:req.params.id}})
      
      return res.status(200).json(getOrder)
 }
+
+
+
 
 
 
