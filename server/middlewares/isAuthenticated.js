@@ -3,19 +3,19 @@
 const verifyToken = require("../resolvers/verifyToken");
 
 module.exports =  async(req,res,next) => {
-     try{
+    try{
 
-         let {authorization} =  req.headers
-         let user =  await verifyToken(authorization)
-         if(!user) return res.status(400).json({"message":"Token is invalid"})
+        let {authorization} =  req.headers
+        let user =  await verifyToken(authorization)
+        if(!user) return res.status(400).json({"message":"Token is invalid"})
 
-         req.user =  user
-         next();
+        req.user =  user
+        next();
 
-     }catch(e){
+    }catch(e){
 
-        let message =  e.message
-        res.status(400).json({message})
+    let message =  e.message
+    res.status(400).json({message})
 
-        }
+    }
  }

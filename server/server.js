@@ -4,13 +4,13 @@ const morgan = require("morgan");
 
 const routes = require('./routes/index');
 
-const cors = require("cors");
-
 const app = express();
 
 const port = process.env.PORT || 8086;
 
-//const {errors} = require("celebrate");
+const {errors} = require("celebrate");
+const cors = require("cors");
+
 
 // éstos son middlewares
 app.use(morgan('dev'));
@@ -20,8 +20,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 
 app.use('/api/v1', routes);
-//app.use(errors());
+app.use(errors());
 //errors es ele celebrate
+
 
 app.get('/', (req, res) => {
     res.send("Nice is Working :)")
