@@ -5,7 +5,7 @@ const {calculatePriceValidation} = require("../middlewares/validations")
 const {signUp,logIn} =  require("../controllers/users");
 const {createRestaurant,getAllRestaurants,getOneRestaurant} =  require("../controllers/restaurants")
 
-const {calculatePrice,createOrder} = require('../controllers/orders');
+const {calculatePrice,createOrder,getOneOrder} = require('../controllers/orders');
 const {createOrderDish,getOrderDish} = require('../controllers/orderdish');
 
 const {createDishes,getAllDishes} =  require("../controllers/dishes")
@@ -13,23 +13,31 @@ const {createDishes,getAllDishes} =  require("../controllers/dishes")
 
 router.post('/users/signup/',signUp)
 router.post('/users/login/',logIn)
+
 router.post('/restaurants',createRestaurant)
-router.post('/restaurants/dishes/:id',createDishes)
+router.get('/restaurants/:id',getOneRestaurant)
+router.get('/restaurants',getAllRestaurants)
+
+router.post('/restaurants/dishes',createDishes)
+router.get('/restaurants/dishes',getAllDishes)
+
+router.post('/orders',createOrder)
+router.get('/orders/:id',getOneOrder)
 
 // TODO: implementar la validación con celebrate
 // router.post('/orders/calculate',calculatePriceValidation,calculatePrice)
 //router.post('/orders/calculate',calculatePrice)
-router.post('/orders',createOrder)
-router.post('/orders/detail',createOrderDish)
-router.get('/orders/detail/:id',getOrderDish)
+
+//router.post('/orders/detail',createOrderDish)
+//router.get('/orders/detail/:id',getOrderDish)
 
 
 
-router.get('/restaurants',getAllRestaurants)
-router.get('/restaurants/:id',getOneRestaurant)
+
+
 //router.get('/restaurants/dishes',getAllDishes)
 //router.get('/restaurants/dishes/:id',getOneDish)
-router.get('/restaurants/dishes/:id',getAllDishes)
+//router.get('/restaurants/dishes/:id',getAllDishes)
 //router.get('/orders/:id',getOneOrder)
 
 module.exports = router;

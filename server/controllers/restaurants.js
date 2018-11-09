@@ -33,10 +33,6 @@ const  getOneRestaurant = async(req,res) => {
         {
             model:Addresses_Restaurants,
             as:"address_restaurant"
-        },
-        {
-            model:Dishes,
-            as:"dish"
         }
     ]})
      
