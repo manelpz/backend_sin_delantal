@@ -8,7 +8,7 @@ const {createRestaurant,getAllRestaurants,getOneRestaurant} =  require("../contr
 const {calculatePrice,createOrder,getOneOrder} = require('../controllers/orders');
 const {createOrderDish,getOrderDish} = require('../controllers/orderdish');
 
-const {createDishes,getAllDishes} =  require("../controllers/dishes")
+const {createDishes,getAllDishes} =  require("../controllers/dishes2")
 //router.use('/users/',require('./user'));
 
 router.post('/users/signup/',signUp)
